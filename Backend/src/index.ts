@@ -6,7 +6,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import cookieParser from 'cookie-parser';
 import { userMiddleware } from "./middleware.js";
-
+import cors from "cors";
 
 const JWTSECRET = "LMAOGETGOOD"
 
@@ -16,6 +16,7 @@ mongoose.connect("mongodb+srv://kkamilxvii:8obtBlYdClXQMMM8@cluster0.zan6mlk.mon
 const app = express();
 app.use(cookieParser());
 app.use(express.json());
+app.use(cors());
 
 
 app.post("/api/signup", async (req,res)=>{

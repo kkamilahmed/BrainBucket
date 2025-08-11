@@ -6,11 +6,13 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import cookieParser from 'cookie-parser';
 import { userMiddleware } from "./middleware.js";
+import cors from "cors";
 const JWTSECRET = "LMAOGETGOOD";
 mongoose.connect("mongodb+srv://kkamilxvii:8obtBlYdClXQMMM8@cluster0.zan6mlk.mongodb.net/Brainbucket");
 const app = express();
 app.use(cookieParser());
 app.use(express.json());
+app.use(cors());
 app.post("/api/signup", async (req, res) => {
     const result = userInputSchema.safeParse(req.body);
     if (!result.success) {
@@ -81,7 +83,14 @@ app.get("/api/content", async (req, res) => {
     const data = await contentModel.find({
         userId: userId
     });
-    console.log(data);
+    if (data) {
+        return res.status(200).json({
+            message: "Data Retreieved"
+        });
+    }
+    res.status(411).json({
+        message: "Server Issues"
+    });
 });
 app.delete("/api/content", (req, res) => {
 });
