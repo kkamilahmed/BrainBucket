@@ -25,11 +25,11 @@ export const userInputSchema = z.object({
 });
 
 
-
 export const contentInputSchema = z.object({
-  link: z.string().url("Must be a valid URL"),
-  type: z.enum(["article", "video", "image", "note"]),
+  link: z.string().url("Must be a valid URL").optional(),
+  linkIMG: z.string().url("Must be a valid URL").optional(),
+  desc: z.string().optional(),
   title: z.string().min(1, "Title is required"),
-  tags: z.array(z.string().regex(/^[a-f\d]{24}$/i, "Invalid tag ID")),
+  userId: z.string().regex(/^[a-f\d]{24}$/i, "Invalid user ID"),
 });
 

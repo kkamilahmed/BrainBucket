@@ -4,14 +4,10 @@ export declare const userInputSchema: z.ZodObject<{
     password: z.ZodString;
 }, z.core.$strip>;
 export declare const contentInputSchema: z.ZodObject<{
-    link: z.ZodString;
-    type: z.ZodEnum<{
-        image: "image";
-        video: "video";
-        article: "article";
-        note: "note";
-    }>;
+    link: z.ZodOptional<z.ZodString>;
+    linkIMG: z.ZodOptional<z.ZodString>;
+    desc: z.ZodOptional<z.ZodString>;
     title: z.ZodString;
-    tags: z.ZodArray<z.ZodString>;
+    userId: z.ZodString;
 }, z.core.$strip>;
 //# sourceMappingURL=schemas.d.ts.map
